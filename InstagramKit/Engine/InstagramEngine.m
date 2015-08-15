@@ -384,6 +384,22 @@
                    failure:failure];
 }
                          
+
+- (void)searchLocationsWithFacebookPlaceId:(NSString *)facebookPlaceId
+                               withSuccess:(InstagramLocationsBlock)success
+                                   failure:(InstagramFailureBlock)failure
+{
+    [self getPath:[NSString stringWithFormat:@"locations/search?facebook_places_id=%@", facebookPlaceId]
+       parameters:nil
+    responseModel:[InstagramLocation class]
+          success:^(id response, InstagramPaginationInfo *paginationInfo)
+     {
+         NSArray *objects = response;
+         success(objects);
+     }
+          failure:failure];
+}
+
 - (void)searchLocationsAtLocation:(CLLocationCoordinate2D)loction
                        withSuccess:(InstagramLocationsBlock)success
                            failure:(InstagramFailureBlock)failure

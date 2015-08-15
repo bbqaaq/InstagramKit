@@ -152,6 +152,16 @@
 
 #pragma mark - Locations -
 
+/**
+ *  Search for a location by facebook id.
+ *
+ *  @param facebookPlaceId  Facebook Place id.
+ *  @param success          Provides an array of Location objects.
+ *  @param failure          Provides an error and a server status code.
+ */
+- (void)searchLocationsWithFacebookPlaceId:(NSString *)facebookPlaceId
+                               withSuccess:(InstagramLocationsBlock)success
+                                   failure:(InstagramFailureBlock)failure;
 
 /**
  *  Search for a location by geographic coordinate.
