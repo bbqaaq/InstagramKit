@@ -202,6 +202,20 @@
                      withSuccess:(InstagramMediaBlock)success
                          failure:(InstagramFailureBlock)failure;
 
+/**
+ *  Get a list of recent media objects from a given location.
+ *
+ *  @param locationId   Id of a Location object.
+ *  @param count    Count of objects to fetch.
+ *  @param maxId    The nextMaxId from the previously obtained PaginationInfo object.
+ *  @param success      Provides an array of Media objects and Pagination info.
+ *  @param failure      Provides an error and a server status code.
+ */
+- (void)getMediaAtLocationWithId:(NSString*)locationId
+                           count:(NSInteger)count
+                           maxId:(NSString *)maxId
+                     withSuccess:(InstagramMediaBlock)success
+                         failure:(InstagramFailureBlock)failure;
 
 #pragma mark - Users -
 

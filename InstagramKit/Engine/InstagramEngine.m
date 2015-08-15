@@ -469,6 +469,17 @@
            failure:failure];
  }
 
+- (void)getMediaAtLocationWithId:(NSString*)locationId
+                           count:(NSInteger)count
+                           maxId:(NSString *)maxId
+                     withSuccess:(InstagramMediaBlock)success
+                         failure:(InstagramFailureBlock)failure {
+    NSDictionary *params = [self parametersFromCount:count maxId:maxId andPaginationKey:kPaginationKeyMaxId];
+    [self getPath:[NSString stringWithFormat:@"locations/%@/media/recent", locationId] parameters:params responseModel:[InstagramMedia class]
+          success:success
+          failure:failure];
+    
+}
 
 #pragma mark - Users -
 
