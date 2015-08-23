@@ -389,15 +389,11 @@
                                withSuccess:(InstagramLocationsBlock)success
                                    failure:(InstagramFailureBlock)failure
 {
-    [self getPath:[NSString stringWithFormat:@"locations/search?facebook_places_id=%@", facebookPlaceId]
-       parameters:nil
-    responseModel:[InstagramLocation class]
-          success:^(id response, InstagramPaginationInfo *paginationInfo)
-     {
-         NSArray *objects = response;
-         success(objects);
-     }
-          failure:failure];
+    [self getPaginatedPath:[NSString stringWithFormat:@"locations/search?facebook_places_id=%@", facebookPlaceId]
+                parameters:nil
+             responseModel:[InstagramLocation class]
+                   success:success
+                   failure:failure];
 }
 
 - (void)searchLocationsAtLocation:(CLLocationCoordinate2D)loction
@@ -454,9 +450,10 @@
                      withSuccess:(InstagramMediaBlock)success
                          failure:(InstagramFailureBlock)failure {
     NSDictionary *params = [self parametersFromCount:count maxId:maxId andPaginationKey:kPaginationKeyMaxId];
-    [self getPath:[NSString stringWithFormat:@"locations/%@/media/recent", locationId] parameters:params responseModel:[InstagramMedia class]
-          success:success
-          failure:failure];
+    [self getPaginatedPath:[NSString stringWithFormat:@"locations/%@/media/recent", locationId]
+                parameters:params responseModel:[InstagramMedia class]
+                   success:success
+                   failure:failure];
     
 }
 
